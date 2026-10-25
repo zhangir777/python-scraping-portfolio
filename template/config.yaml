@@ -1,0 +1,20 @@
+# Scraper config for a new order. Fill the TODOs, then: uv run python template/scraper.py
+client: "TODO client name"
+start_urls:
+  - "https://books.toscrape.com/catalogue/page-1.html"   # TODO
+delay_seconds: 1.0          # pause between requests, keep >= 1
+max_pages: 0                # 0 = no limit
+output: "out/result"        # without extension
+formats: [xlsx, csv]
+dedupe_key: url             # field used to drop duplicates
+
+# TODO: selectors (CSS). Each item on a list page is one row.
+item: "article.product_pod"
+next_page: "li.next a"      # href of the "next" link; remove for single page
+fields:
+  title: {css: "h3 a", attr: title}
+  price: {css: "p.price_color", type: price}
+  availability: {css: "p.availability"}
+  url: {css: "h3 a", attr: href, type: url}
+money_fields: [price]
+url_fields: [url]

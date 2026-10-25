@@ -1,0 +1,26 @@
+# Example of a scheduled price check. The schedule is commented out on purpose,
+# so the demo sandbox is not hit for nothing. Uncomment for a real client.
+name: Price monitor
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: "0 3 * * *"   # every day 03:00 UTC = 08:00 Almaty
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.2
+      - run: uv sync
+      - run: uv run scrape-books --out out/today --format csv
+      - run: >
+          uv run price-monitor samples/books.csv out/today.csv --out out/changes.xlsx --notify
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      - uses: actions/upload-artifact@v7
+        with:
+          name: changes
+          path: out/changes.xlsx

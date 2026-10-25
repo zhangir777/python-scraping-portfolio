@@ -4,6 +4,8 @@
 
 [![CI](https://github.com/zhangir777/python-scraping-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/zhangir777/python-scraping-portfolio/actions/workflows/ci.yml)
 
+**Hire me:** [Fiverr](https://www.fiverr.com/akhmetov_zhangi) · [Telegram @ZhangirAkhmetov](https://t.me/ZhangirAkhmetov)
+
 ![Formatted Excel output](docs/screenshots/books_excel.png)
 
 All demos run on sandbox sites built for scraping practice ([books.toscrape.com](https://books.toscrape.com), [quotes.toscrape.com](https://quotes.toscrape.com)). The files in [`samples/`](samples/) are real results of these scripts.

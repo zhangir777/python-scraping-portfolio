@@ -4,7 +4,7 @@
 - Install: `uv sync` (+ `uv run playwright install chromium` for project 2)
 - Tests (offline): `uv run pytest -q`
 - Lint/format: `uv run ruff format . && uv run ruff check --fix .`
-- Run: `uv run scrape-books`, `uv run scrape-quotes js|scroll|login`, `uv run price-monitor OLD NEW`
+- Run: `uv run scrape-books`, `uv run scrape-quotes js|scroll|login`, `uv run price-monitor OLD NEW`, `uv run inventory-tracker` (or run_tracker.bat/.command)
 
 ## Layout
 - `core/` shared: `http.py` (robots.txt, delay, retries), `export.py` (styled xlsx/csv/json), `models.py` (pydantic)

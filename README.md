@@ -44,6 +44,16 @@ Scheduled runs: [GitHub Actions workflow](.github/workflows/price-monitor.yml) (
 0 8 * * * cd /path/to/repo && uv run scrape-books --out out/today --format csv && uv run price-monitor out/yesterday.csv out/today.csv --notify && mv out/today.csv out/yesterday.csv
 ```
 
+### 4. One-click inventory tracker for non-technical teams ([`projects/inventory_tracker`](projects/inventory_tracker))
+For clients who want to run it themselves: **double-click `run_tracker.bat` (Windows) or `run_tracker.command` (macOS)**. It installs what it needs on the first run, collects the full catalog, saves a dated snapshot, compares it with the previous run and opens the Excel report (new, removed and out-of-stock products, price changes). No terminal, no settings.
+```
+tracker_data/
+  catalog_latest.xlsx          full catalog from the last run
+  history/2026-10-29_0800.csv  one snapshot per run
+  reports/changes_2026-10-29_0800.xlsx
+```
+The first run saves a baseline; every next run produces a change report. Same thing from a terminal: `uv run inventory-tracker` (`--max-pages 1` for a quick try, `--no-open` for scheduled runs).
+
 ## Responsible scraping
 - Only public data; `robots.txt` is checked before every new site
 - Polite rate: 1 request per second by default, clear User-Agent, retries with exponential backoff
@@ -66,6 +76,7 @@ Tests run fully offline on saved HTML pages: `uv run pytest -q`. Lint: `uv run r
 - Каталоги товаров: название, цена, наличие, ссылки, с листом сводки.
 - Сайты на JavaScript, бесконечная прокрутка, вход по логину.
 - Мониторинг цен конкурентов: что подорожало, подешевело или закончилось, с уведомлением в Telegram.
+- Запуск двойным кликом (Windows/macOS) для тех, кто не работает с терминалом: сбор, сравнение с прошлым запуском и готовый Excel.
 - Только открытые данные, с соблюдением robots.txt и без обхода защиты.
 
 Срок: 1–5 дней. Цена: от 15 000 ₸ за простой сайт, мониторинг цен — от 10 000 ₸/мес.

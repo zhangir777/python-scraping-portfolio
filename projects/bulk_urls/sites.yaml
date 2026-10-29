@@ -1,0 +1,6 @@
+# Per-site CSS selectors, only for sites without JSON-LD / meta price tags.
+# Key = domain exactly as in the URL. Fields: price (required), title, currency.
+books.toscrape.com:
+  price: p.price_color
+  title: h1
+  currency: GBP

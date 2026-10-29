@@ -54,6 +54,19 @@ tracker_data/
 ```
 The first run saves a baseline; every next run produces a change report. Same thing from a terminal: `uv run inventory-tracker` (`--max-pages 1` for a quick try, `--no-open` for scheduled runs).
 
+### 5. Prices from a long list of URLs on many sites ([`projects/bulk_urls`](projects/bulk_urls))
+Input: your CSV/Excel with a `url` column (any number of shops). Output: one Excel with **Prices**, **Failed** (with the reason) and **Summary** (success rate per site).
+- **Any shop without custom code:** price is read from schema.org JSON-LD or meta price tags, which most stores have; a site without them needs only 2 CSS selectors in [`sites.yaml`](projects/bulk_urls/sites.yaml)
+- **Fast but polite:** sites run in parallel, each with its own queue (1 request/s per site), so 10 sites go about 10× faster without loading any of them more
+- **Safe for big lists:** every result is saved at once; after a crash or Ctrl+C the same command continues where it stopped; `--retry-failed` checks only the failed ones again
+- Duplicate URLs are removed, broken links (404), pages without a price and URLs blocked by robots.txt go to the Failed sheet instead of stopping the run
+```bash
+uv run bulk-prices samples/bulk_urls.csv --out samples/bulk_prices
+```
+Live run: 63 rows → 49 unique URLs on 2 sites, 46 prices found; the 3 failures are there on purpose. Result: [`samples/bulk_prices.xlsx`](samples/bulk_prices.xlsx)
+
+![Bulk prices report](docs/screenshots/bulk_prices.png)
+
 ## Responsible scraping
 - Only public data; `robots.txt` is checked before every new site
 - Polite rate: 1 request per second by default, clear User-Agent, retries with exponential backoff
@@ -76,6 +89,7 @@ Tests run fully offline on saved HTML pages: `uv run pytest -q`. Lint: `uv run r
 - Каталоги товаров: название, цена, наличие, ссылки, с листом сводки.
 - Сайты на JavaScript, бесконечная прокрутка, вход по логину.
 - Мониторинг цен конкурентов: что подорожало, подешевело или закончилось, с уведомлением в Telegram.
+- Цены по большому списку ссылок с разных сайтов: параллельно, с продолжением после сбоя и листом ошибок.
 - Запуск двойным кликом (Windows/macOS) для тех, кто не работает с терминалом: сбор, сравнение с прошлым запуском и готовый Excel.
 - Только открытые данные, с соблюдением robots.txt и без обхода защиты.
 

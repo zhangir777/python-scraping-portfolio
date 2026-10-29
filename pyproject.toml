@@ -20,6 +20,7 @@ scrape-books = "projects.static_catalog.scraper:app"
 scrape-quotes = "projects.js_dynamic.scraper:app"
 price-monitor = "projects.price_monitor.monitor:app"
 inventory-tracker = "projects.inventory_tracker.tracker:app"
+bulk-prices = "projects.bulk_urls.run:app"
 
 [dependency-groups]
 dev = ["pytest>=9.1", "ruff>=0.17"]

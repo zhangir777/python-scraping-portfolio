@@ -1,0 +1,9 @@
+BOT_NAME = "books_scraper"
+SPIDER_MODULES = ["books_scraper.spiders"]
+NEWSPIDER_MODULE = "books_scraper.spiders"
+USER_AGENT = "PortfolioScraper/1.0 (+https://github.com/zhangir777/python-scraping-portfolio)"
+ROBOTSTXT_OBEY = True
+DOWNLOAD_DELAY = 1  # polite: about 1 request per second, same as the rest of the portfolio
+CONCURRENT_REQUESTS_PER_DOMAIN = 1
+RETRY_TIMES = 3
+ITEM_PIPELINES = {"books_scraper.pipelines.DedupePipeline": 100}

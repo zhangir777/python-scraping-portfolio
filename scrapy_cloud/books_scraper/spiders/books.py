@@ -1,5 +1,5 @@
 """Product catalog spider (books.toscrape.com): same fields as projects/static_catalog,
-runs in Scrapy Cloud on a schedule and exports JSON/CSV/XML from the dashboard."""
+runs in Scrapy Cloud (schedulable on a paid plan) and exports JSON/CSV/XML from the dashboard."""
 
 import re
 

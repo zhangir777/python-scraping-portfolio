@@ -67,8 +67,8 @@ Live run: 63 rows → 49 unique URLs on 2 sites, 46 prices found; the 3 failures
 
 ![Bulk prices report](docs/screenshots/bulk_prices.png)
 
-### 6. Same scraper in the cloud, on a schedule ([`scrapy_cloud`](scrapy_cloud))
-The catalog scraper rewritten as a Scrapy spider and deployed to [Scrapy Cloud](https://www.zyte.com/scrapy-cloud/) (Zyte): runs on a server, not on your computer, on a schedule, with run logs and JSON/CSV/XML export from the dashboard. Same fields as project 1, duplicates removed by UPC, 1 request per second, robots.txt respected. Live run: 1,000 books, no errors.
+### 6. Same scraper in the cloud ([`scrapy_cloud`](scrapy_cloud))
+The catalog scraper rewritten as a Scrapy spider and deployed to [Scrapy Cloud](https://www.zyte.com/scrapy-cloud/) (Zyte): runs on a server, not on your computer, with run logs and JSON/CSV/XML export from the dashboard. Scheduling is a dashboard setting on a paid Scrapy Cloud plan (this demo uses the free tier, so it is run on demand). Same fields as project 1, duplicates removed by UPC, 1 request per second, robots.txt respected. Live run: 1,000 books, no errors.
 ```bash
 cd scrapy_cloud
 uv run --with scrapy scrapy crawl books -O books.json   # local run

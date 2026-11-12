@@ -6,6 +6,8 @@
 
 **Hire me:** [Upwork](https://www.upwork.com/freelancers/~012c68804f9b4d4550) · [Fiverr](https://www.fiverr.com/akhmetov_zhangi) · [Telegram @ZhangirAkhmetov](https://t.me/ZhangirAkhmetov)
 
+**[Watch the demo video (mp4)](docs/demo.mp4)**
+
 ![Formatted Excel output](docs/screenshots/books_excel.png)
 
 All demos run on sandbox sites built for scraping practice ([books.toscrape.com](https://books.toscrape.com), [quotes.toscrape.com](https://quotes.toscrape.com)). The files in [`samples/`](samples/) are real results of these scripts.
